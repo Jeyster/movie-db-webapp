@@ -9,9 +9,9 @@ public class Movie {
 	private Integer id;
 	private String name;
 	private Date releaseDate;
-	private Studio studio = new Studio();
-	private Realisator realisator = new Realisator();
-	private List<Actor> actors = new ArrayList<>();
+	private Studio studio;
+	private Realisator realisator;
+	private List<Actor> actors;
 	
 	public Integer getId() {
 		return id;
