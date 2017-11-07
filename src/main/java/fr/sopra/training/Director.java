@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 
-public class Actor {
+public class Director {
 	
 	private int id;
 	private String firstName;
@@ -28,6 +28,15 @@ public class Actor {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public List<Director> getDirectorsFromSession(@Context HttpServletRequest req, List<Director> directors){
+		List <Director> list = (List<Director>) req.getSession().getAttribute("realisators");
+		if(list==null){
+			list = directors;
+			req.getSession().setAttribute("realisators", list);
+		}
+		return list;	
 	}
 
 }

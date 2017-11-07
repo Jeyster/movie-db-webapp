@@ -1,16 +1,20 @@
 package fr.sopra.training;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.core.Context;
 
 public class Studio {
-	private Integer id;
+	private int id;
 	private String name;
 	private Date creationDate;
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -24,6 +28,15 @@ public class Studio {
 	}
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
+	}
+	
+	public List<Studio> getStudiosFromSession(@Context HttpServletRequest req, List<Studio> studios){
+		List <Studio> list = (List<Studio>) req.getSession().getAttribute("studios");
+		if(list==null){
+			list = studios;
+			req.getSession().setAttribute("studios", list);
+		}
+		return list;	
 	}
 	
 }
